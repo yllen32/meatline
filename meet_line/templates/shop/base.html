@@ -1,0 +1,45 @@
+<!DOCTYPE HTML>
+{% load static %}
+<html>
+<head>
+<title>Nuevo Shop a Ecommerce Online Shopping Flat Bootstarp Resposive Website Template | Products :: w3layouts</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="keywords" content="Nuevo Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template, 
+Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
+<link href="{%static 'css/bootstrap.css'%}" rel='stylesheet' type='text/css' />
+<!-- Custom Theme files -->
+<link href="{%static 'css/style.css'%}" rel='stylesheet' type='text/css' />	
+<!-- start menu -->
+<link href="{% static 'css/megamenu.css' %}" rel="stylesheet" type="text/css" media="all" />
+<!--web-fonts-->
+ <link href='//fonts.googleapis.com/css?family=Open+Sans:400,300,400italic,300italic,600,700' rel='stylesheet' type='text/css'>
+ <link href='//fonts.googleapis.com/css?family=Roboto+Slab:300,400,700' rel='stylesheet' type='text/css'>
+<!--//web-fonts-->
+</head>
+<body>
+<!--start-home-->
+<!-- header_top -->
+<!-- header -->
+<div class="header_bg">
+   <div class="container">
+	<div class="header">
+	  {% include 'shop/header.html' %}
+	<div class="products">
+		<div class="container">
+			<div class="products-grids">
+				    {% block content %}
+					{% endblock %}
+					{% include 'shop/leftpanel.html' %}
+							</ul>	
+						</div>
+					</div>
+				</div>
+				<div class="clearfix"></div>
+			</div>
+		</div>
+	</div>
+	</div>
+		<a href="#home" id="toTop" class="scroll" style="display: block;"> <span id="toTopHover" style="opacity: 1;"> </span></a>
+</body>
+</html>
