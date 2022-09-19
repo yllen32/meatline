@@ -1,123 +1,22 @@
 {% extends 'shop/base.html' %}
 {% block content %}
-
-<div class="col-md-8 products-grid-left">
-    <div class="products-grid-lft">
-        <div class="products-grd">
-            <div class="p-one simpleCart_shelfItem prd">
-                <a href="single.html">
-                        <img src="images/p5.jpg" alt="" class="img-responsive" />
+    {% for product in products%}
+    {% if forloop.first %}<div class="row">{% endif %}
+        <div class="col">
+            <div class="products-grd">
+                <a href="#">
+                        <img
+                         style ="width: 300px; height: 350px; object-fit: contain; margin: 0 auto"
+                         src="{{product.picture_url.url}}" 
+                         alt="" 
+                         class="img-responsive"
+                         />
                 </a>
-                <h4>Elevation Jacket</h4>
-                <p><a class="item_add" href="#"><i class="glyphicon glyphicon-shopping-cart"></i> <span class=" item_price valsa">$729</span></a></p>
-                <div class="pro-grd">
-                    <a href="single.html">Quick View</a>
+                <h4>{{product.name}}</h4>
+                <p><a class="item_add" href="#"><i class="glyphicon glyphicon-shopping-cart"></i> <span class=" item_price valsa">{{product.price}}</span></a></p>
                 </div>
             </div>	
-        </div>
-        <div class="products-grd">
-            <div class="p-one simpleCart_shelfItem prd">
-                <a href="single.html">
-                        <img src="images/p4.jpg" alt="" class="img-responsive" />
-                </a>
-                <h4>Running Shoes</h4>
-                <p><a class="item_add" href="#"><i class="glyphicon glyphicon-shopping-cart"></i> <span class=" item_price valsa">$729</span></a></p>
-                <div class="pro-grd">
-                    <a href="single.html">Quick View</a>
-                </div>
-            </div>	
-        </div>
-        <div class="products-grd">
-            <div class="p-one simpleCart_shelfItem prd">
-                <a href="single.html">
-                        <img src="images/p6.jpg" alt="" class="img-responsive" />
-                </a>
-                <h4>Tote Bag</h4>
-                <p><a class="item_add" href="#"><i class="glyphicon glyphicon-shopping-cart"></i> <span class=" item_price valsa">$729</span></a></p>
-                <div class="pro-grd">
-                    <a href="single.html">Quick View</a>
-                </div>
-            </div>	
-        </div>
-        <div class="clearfix"> </div>
-    </div>
-    <div class="products-grid-lft">
-        <div class="products-grd">
-            <div class="p-one simpleCart_shelfItem prd">
-                <a href="single.html">
-                        <img src="images/p9.jpg" alt="" class="img-responsive" />
-                </a>
-                <h4>Lifestyle Shoes</h4>	
-                <p><a class="item_add" href="#"><i class="glyphicon glyphicon-shopping-cart"></i> <span class=" item_price valsa">$729</span></a></p>
-                <div class="pro-grd">
-                    <a href="single.html">Quick View</a>
-                </div>
-            </div>	
-        </div>
-        <div class="products-grd">
-            <div class="p-one simpleCart_shelfItem prd">
-                <a href="single.html">
-                        <img src="images/p1.jpg" alt="" class="img-responsive" />
-                </a>
-                <h4>New style Bag</h4>
-                <p><a class="item_add" href="#"><i class="glyphicon glyphicon-shopping-cart"></i> <span class=" item_price valsa">$729</span></a></p>
-                <div class="pro-grd">
-                    <a href="single.html">Quick View</a>
-                </div>
-            </div>	
-        </div>
-        <div class="products-grd">
-            <div class="p-one simpleCart_shelfItem prd">
-                <a href="single.html">
-                        <img src="images/p3.jpg" alt="" class="img-responsive" />
-                </a>
-                <h4>Rim Frames</h4>
-                <p><a class="item_add" href="#"><i class="glyphicon glyphicon-shopping-cart"></i> <span class=" item_price valsa">$729</span></a></p>
-                <div class="pro-grd">
-                    <a href="single.html">Quick View</a>
-                </div>
-            </div>	
-        </div>
-        <div class="clearfix"> </div>
-    </div>
-    <div class="products-grid-lft">
-        <div class="products-grd">
-            <div class="p-one simpleCart_shelfItem prd">
-                <a href="single.html">
-                        <img src="images/p2.jpg" alt="" class="img-responsive" />
-                </a>
-                <h4>Running Shoes</h4>
-                <p><a class="item_add" href="#"><i class="glyphicon glyphicon-shopping-cart"></i> <span class=" item_price valsa">$729</span></a></p>
-                <div class="pro-grd">
-                    <a href="single.html">Quick View</a>
-                </div>
-            </div>	
-        </div>
-        <div class="products-grd">
-            <div class="p-one simpleCart_shelfItem prd">
-                <a href="single.html">
-                        <img src="images/p7.jpg" alt="" class="img-responsive" />
-                </a>
-                <h4>Elevation Jacket</h4>
-                <p><a class="item_add" href="#"><i class="glyphicon glyphicon-shopping-cart"></i> <span class=" item_price valsa">$729</span></a></p>
-                <div class="pro-grd">
-                    <a href="single.html">Quick View</a>
-                </div>
-            </div>	
-        </div>
-        <div class="products-grd">
-            <div class="p-one simpleCart_shelfItem prd">
-                <a href="single.html">
-                        <img src="images/p9.jpg" alt="" class="img-responsive" />
-                </a>
-                <h4>Lifestyle Shoes</h4>
-                <p><a class="item_add" href="#"><i class="glyphicon glyphicon-shopping-cart"></i> <span class=" item_price valsa">$729</span></a></p>
-                <div class="pro-grd">
-                    <a href="single.html">Quick View</a>
-                </div>
-            </div>	
-        </div>
-        <div class="clearfix"> </div>
+        {%endfor%}
     </div>
 </div>
 {% endblock %}
