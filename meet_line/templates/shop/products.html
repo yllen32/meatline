@@ -2,18 +2,16 @@
 {% block content %}
     {% for product in products%}
     {% if forloop.first %}<div class="row">{% endif %}
-        <div class="col">
-            <div class="products-grd">
-                <a href="#">
-                        <img
-                         style ="width: 300px; height: 350px; object-fit: contain; margin: 0 auto"
-                         src="{{product.picture_url.url}}" 
-                         alt="" 
-                         class="img-responsive"
-                         />
-                </a>
-                <h4>{{product.name}}</h4>
-                <p><a class="item_add" href="#"><i class="glyphicon glyphicon-shopping-cart"></i> <span class=" item_price valsa">{{product.price}}</span></a></p>
+        <div class=" container col-md-4 col-sm-12">
+            <div class="d-inline-flex">
+                <img
+                    style ="width: 300px; height: 350px; object-fit: contain; margin: auto"
+                    src="{{product.picture_url.url}}" 
+                    alt="{{product.name}}" 
+                    class="img-responsive"
+                    />
+                <h4 class="text-center">{{product.name}}</h4>
+                <p class="text-center"><a class="item_add" href="#"><i class="glyphicon glyphicon-shopping-cart"></i> <span class=" item_price valsa">{{product.price}}</span></a></p>
                 </div>
             </div>	
         {%endfor%}
