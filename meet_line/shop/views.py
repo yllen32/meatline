@@ -1,23 +1,29 @@
+from datetime import datetime
 from django.shortcuts import render
-from django.contrib.sessions.models import Session
-from django.contrib.sessions.backends.db import SessionStore
 
-from .models import Product
+from .models import Product, Card
+from .card import add_to_card
 
 def index(request):
-    """Return a main page of shop with products."""
+    """Вернуть список продуктов и продукты текущей страницы для index."""
     products = Product.objects.all()
-    if request.session.session_key == None:
-        print('newuser')
-        request.session['joins'] = '0'
-    else:
-        print('oldsession')
-        ses = Session.objects.get(pk = request.session.session_key)
-        data = ses.get_decoded()
-        joins = data.get('joins')
-        request.session['joins'] = str(int(joins)+1)
-        print(ses.get_decoded())
-    print(request.session.session_key)
-    return render(
-        request, 'shop/products.html', context = {'products':products},
+    if not request.session.session_key:
+        # инициируем сессию за счет добавления в куки даты первого sessionkey
+        request.session['date_of_key'] = str(datetime.now())
+    session_key = request.session.session_key
+    card = Card.objects.filter(card_id = request.session.session_key)
+    if request.method == 'POST':
+        card = add_to_card(
+            request_data=request.POST,
+            products=products,
+            card_id=session_key
+        )
+    return render(request, 'shop/products.html', context = {
+            'products':products,
+            'card':card
+        },
     )
+
+def card(request):
+    """Вернуть список товаров в корзине."""
+    
