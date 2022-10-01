@@ -8,7 +8,7 @@ User = get_user_model()
 
 class Product(models.Model):
 
-    AMAUNT_CHOICES = [
+    AMOUNT_CHOICES = [
         ('kg', 'кг'),
         ('pcs', 'шт')
     ]
@@ -22,7 +22,7 @@ class Product(models.Model):
         upload_to = 'images/'
     )
     amount = models.CharField(
-        choices=AMAUNT_CHOICES,
+        choices=AMOUNT_CHOICES,
         max_length = 3,
         default = 'kg',
         verbose_name = 'Мера (кг или шт)'
@@ -33,22 +33,29 @@ class Product(models.Model):
         return self.name
 
 class Card(models.Model):
+
     product = models.ForeignKey(
         Product,
         on_delete=models.CASCADE,
-        verbose_name='Товар'
+        verbose_name='Товар',
+        null=True,
     )
-    quantuty = models.IntegerField(
+    quantity = models.IntegerField(
         verbose_name='Колличество',
         validators=[
             MinValueValidator(1),
             MaxValueValidator(10)
         ],
-        help_text='Введите колличество',
+        null=True,
     )
     price = models.DecimalField(
-        max_digits=6,
+        max_digits=10,
         blank=True,
         decimal_places=2,
-        verbose_name='Цена'
+        verbose_name='Цена',
+        null=True,
     )
+    card_id = models.CharField(
+        max_length=40,
+        verbose_name='Идентификатор корзины'
+        )

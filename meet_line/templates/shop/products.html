@@ -1,6 +1,6 @@
 {% extends 'shop/base.html' %}
 {% block content %}
-    {% for product in products%}
+    {% for product in products %}
     {% if forloop.first %}<div class="row">{% endif %}
         <div class=" container col-md-4 col-sm-6">
             <div class="d-inline-flex">
@@ -11,10 +11,49 @@
                     class="img-responsive"
                     />
                 <h4 class="text-center">{{product.name}}</h4>
-                <p class="text-center"><a class="item_add" href="#"><i class="glyphicon glyphicon-shopping-cart"></i> <span class=" item_price valsa">{{product.price}}</span></a></p>
+                <form action="{%url "shop:index" %}" method="post">
+                    {% csrf_token %}
+                <div>
+                    <div style = "width: 100px; margin: auto; text-align: center">
+                        <span style =  class="item_price valsa">{{product.price}} </span>
+                    </div>
                 </div>
-            </div>	
+                <div style = "width: 150px; margin: auto">
+                    <label for="slider_for_product">
+                        <input 
+                        type="range"
+                        max="10" 
+                        min="0.5" 
+                        step="0.5" 
+                        id="id_slider_for_product_{{product.pk}}" 
+                        name="slider_for_product"
+                        value="1">
+                        </input>
+                    </label>
+                    <label for="id_product">
+                        <input type="hidden" value="{{product.pk}}" name="id_product">
+                    </label>
+                </div>
+                <h4 class="text-center"> 
+                    <span id="demo-{{forloop.counter0}}"> </span> {{product.get_amount_display}}
+                </h4>
+                <div style = "width: 150px; margin: auto; text-align: center">
+                    <input type="submit" value="В корзину" class="btn btn-danger"></input>
+                </div>
+                </form>
+            </div>
+            </div>
+            <script>
+                var slider{{forloop.counter0}} = document.getElementById("id_slider_for_product_{{product.pk}}");
+                var output{{forloop.counter0}} = document.getElementById("demo-{{forloop.counter0}}");
+                output{{forloop.counter0}}.innerHTML = slider{{forloop.counter0}}.value;
+                
+                slider{{forloop.counter0}}.oninput = function() {
+                  output{{forloop.counter0}}.innerHTML = this.value;
+                }
+                </script>
         {%endfor%}
     </div>
 </div>
+
 {% endblock %}

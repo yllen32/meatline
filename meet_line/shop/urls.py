@@ -1,9 +1,10 @@
 from django.urls import path
 
-from .views import index
+from .views import index, card
 
 app_name = 'shop'
 
 urlpatterns = [
-    path('', index),
+    path('', index, name='index'),
+    path('card/' card, name='card')
 ]
