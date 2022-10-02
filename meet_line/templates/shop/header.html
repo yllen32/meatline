@@ -1,12 +1,12 @@
 <div class="head-t">
     <div class="logo">
-         <a href="index.html"><h1>Мясной <span>РядЪ</span></h1> </a> 
+         <a href="{%url 'shop:index'%}"><h1>Мясной <span>РядЪ</span></h1> </a> 
      </div>
      <div class="header_right ">
        <div class="#" style="position: fixed; right: 10px; z-index: 999999; background: #ff00002e; border-radius: 5px">
-           <a href="checkout.html">
+           <a href="{%url 'shop:card'%}">
            <div class="">
-           <h3 class=""> Корзина ({{card.count}}) <i class="glyphicon glyphicon-shopping-cart"></i></h3>     
+           <h3  class=""> Корзина ({{card.count}}) <i class="glyphicon glyphicon-shopping-cart"></i></h3>     
            </div>
             </a>
            <div class="clearfix"></div>

@@ -1,4 +1,4 @@
-from random import choices
+from decimal import Decimal
 from django.db import models
 from django.contrib.auth import get_user_model
 from django.core.validators import MinValueValidator, MaxValueValidator
@@ -59,3 +59,5 @@ class Card(models.Model):
         max_length=40,
         verbose_name='Идентификатор корзины'
         )
+
+    

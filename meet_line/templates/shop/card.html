@@ -1,0 +1,24 @@
+{% extends 'shop/base.html' %}
+{% block content %}
+    {% for item in card_items %}
+      <div style="border-bottom-style: ridge;" class='row container'>
+        <div class="col-6">
+            <h4 style="">
+                {{item.product.name}}
+                ({{item.quantity}}{{item.product.get_amount_display}})
+            </h4>
+        </div>
+        <div style="text-align: end"class="col-6">
+            <form action="{%url 'shop:card'%}" method = "post">
+                {% csrf_token %}
+                <input type="hidden" name='item_for_delet' value="{{item.id}}"></input>
+            <h4>
+                {{item.price}} руб
+                <input type="submit" value="Убрать"></input>
+            </h4>  
+        </form>
+        </div>
+    </div>
+    {% endfor %}
+    <h2 style="text-align: end">Всего:{{total_price}} руб </h2>
+{% endblock %}

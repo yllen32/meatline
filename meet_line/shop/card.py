@@ -7,11 +7,11 @@ from .validators import validate_card_quantity
 
 def add_to_card(request_data, products, card_id):
     """
-    Возвращает queryset новой корзины после добавления в неё новых продуктов.
+    Returns queryset of the new card after adding new items.
 
-    request_data: dict - словарь c информацией от формы продукта
-    quantity: float - колличество добовляемого продукта в корзину
-    card_id: str - id корзины в которую добовляется товар.
+    request_data: dict - dictionary with data from form
+    quantity: float - quantity of added products
+    card_id: str - id of the card for adding new items
     """
     product_id = int(request_data.get('id_product'))
     quantity = float(request_data.get('slider_for_product'))
