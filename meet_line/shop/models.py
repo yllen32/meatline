@@ -93,7 +93,7 @@ class ShopRequest(models.Model):
         blank=False
         )
     phone = models.CharField(
-        validators=[phone_validator],
+        validators=[phone_validator,],
         verbose_name='Номер телефона для связи',
         help_text='Введите номер вашего мобильного телефона',
         max_length=20

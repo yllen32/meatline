@@ -1,5 +1,5 @@
 from datetime import datetime
-from django.shortcuts import get_object_or_404, render
+from django.shortcuts import get_object_or_404, render, redirect
 from django.db.models import Sum
 
 from .models import Product, Card
@@ -29,7 +29,6 @@ def index(request):
 def card(request):
     """Return a list of card items"""
     card_items = Card.objects.filter(card_id=request.session.session_key)
-    print(request.POST)
     if request.method == 'POST':
         card_items = change_card(
             request_data=request.POST, card_items=card_items
@@ -37,7 +36,6 @@ def card(request):
     total_price = (
         card_items.aggregate(total_price = Sum('price'))
         ).get('total_price') or 0
-    print(request.POST)
     return render(request, 'shop/card.html', context={
         'card_items': card_items,
         'total_price': total_price
@@ -46,5 +44,8 @@ def card(request):
 
 def request(request):
     """Return a form to making request."""
-    form = ShopRequestFrom()
+    form = ShopRequestFrom(request.POST or None)
+    if form.is_valid():
+        form.save()
+        return redirect('shop:index' )
     return render(request, 'shop/request.html', context={'form': form})
