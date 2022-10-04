@@ -3,7 +3,7 @@ from django.utils.translation import gettext_lazy as _
 from django.core.validators import RegexValidator
 
 phone_validator = RegexValidator(
-    regex=r'/(?:\+|\d)[\d\-\(\) ]{9,}\d/g',
+    regex=r'(\+7|8)[- _]*\(?[- _]*(\d{3}[- _]*\)?([- _]*\d){7}|\d\d[- _]*\d\d[- _]*\)?([- _]*\d){6})',
     message="Введите номер мобильного телефона"
     )
 
