@@ -31,8 +31,7 @@
                 <input 
                   class="btn btn-primary" 
                   type="submit" 
-                  value="Убрать"
-                  style="color: #1b242f; background-color: #d21818d9; border-color: #1b242f">
+                  value="Убрать">
                 </input>
             </h4>  
         </form>
@@ -40,4 +39,11 @@
 </div>
     {% endfor %}
     <h2 style="text-align: end">Всего:{{total_price}} руб </h2>
+    <div class ="container text-center">
+      <form action="{%url 'shop:request'%}">  
+        <button 
+          class="btn btn-primary btn-lg active" 
+          type="submit"
+          >Оформить заявку
+        </button></div></form>
 {% endblock %}

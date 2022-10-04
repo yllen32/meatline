@@ -1,10 +1,12 @@
 from decimal import Decimal
+from email.policy import default
+from tabnanny import verbose
 
 from django.db import models
 from django.contrib.auth import get_user_model
 from django.core.validators import MinValueValidator, MaxValueValidator
 
-from .validators import validate_card_quantity
+from .validators import validate_card_quantity, phone_validator
 
 User = get_user_model()
 
@@ -77,3 +79,38 @@ class Card(models.Model):
                 )
             ),
         ]
+
+class ShopRequest(models.Model):
+
+    card_id = models.CharField(
+        max_length=40,
+        verbose_name='Идентификатор корзины'
+        )
+    name = models.CharField(
+        max_length=30,
+        verbose_name='Имя покупателя',
+        help_text='Введите имя по которому к вам можно обращатся',
+        blank=False
+        )
+    phone = models.CharField(
+        validators=[phone_validator],
+        verbose_name='Номер телефона для связи',
+        help_text='Введите номер вашего мобильного телефона',
+        max_length=20
+        )
+    address = models.CharField(
+        max_length=300,
+        verbose_name="Адрес доставки",
+        help_text="Введите адрес по которому доставить покупки" 
+    )
+    comment = models.TextField(
+        max_length=300,
+        verbose_name="Комментарий",
+        help_text='Введите комментарий (если необходим)',
+        null=True,
+        blank=True,
+    )
+    is_delivered = models.BooleanField(
+        default=False,
+        verbose_name='Доставка выполнена?'
+    )

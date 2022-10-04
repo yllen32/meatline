@@ -4,6 +4,7 @@ from django.db.models import Sum
 
 from .models import Product, Card
 from .card import add_to_card, change_card
+from .forms import ShopRequestFrom
 
 def index(request):
     """Return products to main page and form for putting it in to card."""
@@ -42,3 +43,8 @@ def card(request):
         'total_price': total_price
         }
     )
+
+def request(request):
+    """Return a form to making request."""
+    form = ShopRequestFrom()
+    return render(request, 'shop/request.html', context={'form': form})
