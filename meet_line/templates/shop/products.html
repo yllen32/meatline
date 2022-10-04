@@ -1,4 +1,5 @@
 {% extends 'shop/base.html' %}
+{% block title %} Магазин {%endblock%}
 {% block content %}
     {% for product in products %}
     {% if forloop.first %}<div class="row">{% endif %}
