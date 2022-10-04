@@ -3,7 +3,7 @@ from django.shortcuts import get_object_or_404, render
 from django.db.models import Sum
 
 from .models import Product, Card
-from .card import add_to_card
+from .card import add_to_card, change_card
 
 def index(request):
     """Return products to main page and form for putting it in to card."""
@@ -28,10 +28,11 @@ def index(request):
 def card(request):
     """Return a list of card items"""
     card_items = Card.objects.filter(card_id=request.session.session_key)
+    print(request.POST)
     if request.method == 'POST':
-        id_for_delete = request.POST.get('item_for_delet')
-        product = get_object_or_404(card_items, id=int(id_for_delete))
-        product.delete()
+        card_items = change_card(
+            request_data=request.POST, card_items=card_items
+        )
     total_price = (
         card_items.aggregate(total_price = Sum('price'))
         ).get('total_price') or 0

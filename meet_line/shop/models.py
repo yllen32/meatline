@@ -1,7 +1,10 @@
 from decimal import Decimal
+
 from django.db import models
 from django.contrib.auth import get_user_model
 from django.core.validators import MinValueValidator, MaxValueValidator
+
+from .validators import validate_card_quantity
 
 User = get_user_model()
 
@@ -33,20 +36,18 @@ class Product(models.Model):
         return self.name
 
 class Card(models.Model):
-
     product = models.ForeignKey(
         Product,
         on_delete=models.CASCADE,
         verbose_name='Товар',
         null=True,
     )
-    quantity = models.IntegerField(
+    quantity = models.DecimalField(
         verbose_name='Колличество',
-        validators=[
-            MinValueValidator(1),
-            MaxValueValidator(10)
-        ],
+        validators=[validate_card_quantity],
         null=True,
+        max_digits=3,
+        decimal_places=1
     )
     price = models.DecimalField(
         max_digits=10,
@@ -59,5 +60,20 @@ class Card(models.Model):
         max_length=40,
         verbose_name='Идентификатор корзины'
         )
-
     
+    def save(self, *args, **kwargs):
+        print(self.quantity)
+        self.price = Decimal(self.quantity or 1)*self.product.price
+        super(Card, self).save(*args, **kwargs)
+        
+    
+    class Meta:
+        constraints = [
+            models.UniqueConstraint(
+                fields=['product', 'card_id'],
+                name='unique_card_product',
+                violation_error_message=(
+                    'Card can only have one instance of a product'
+                )
+            ),
+        ]
