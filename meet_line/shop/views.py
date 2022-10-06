@@ -1,10 +1,15 @@
 from datetime import datetime
-from django.shortcuts import get_object_or_404, render, redirect
+from django.shortcuts import render, redirect
 from django.db.models import Sum
+from django.views.generic.base import TemplateView
 
 from .models import Product, Card
 from .card import add_to_card, change_card
 from .forms import ShopRequestFrom
+
+class AboutShop(TemplateView):
+
+    template_name = 'shop/about.html'
 
 def index(request):
     """Return products to main page and form for putting it in to card."""
