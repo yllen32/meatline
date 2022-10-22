@@ -128,4 +128,6 @@ dmypy.json
 # Pyre type checker
 .pyre/
 
+
 meet_line/media/
+meet_line/static/img 

@@ -20,6 +20,12 @@
                     </div>
                 </div>
                 <div style = "width: 150px; margin: auto">
+                    <label for="id_product">
+                        <input type="hidden" value="{{product.pk}}" name="id_product">
+                    </label>
+                    <h4 class="text-center"> 
+                        <span id="demo-{{forloop.counter0}}"> </span> {{product.get_amount_display}}
+                    </h4>
                     <label for="slider_for_product">
                         <input 
                         type="range"
@@ -28,16 +34,13 @@
                         step="0.5" 
                         id="id_slider_for_product_{{product.pk}}" 
                         name="slider_for_product"
-                        value="1">
+                        value="1"
+                        style="margin: 1em 2em 1em auto"
+                        >
                         </input>
                     </label>
-                    <label for="id_product">
-                        <input type="hidden" value="{{product.pk}}" name="id_product">
-                    </label>
                 </div>
-                <h4 class="text-center"> 
-                    <span id="demo-{{forloop.counter0}}"> </span> {{product.get_amount_display}}
-                </h4>
+                
                 <div style = "width: 150px; margin: auto; text-align: center">
                     <input type="submit" value="В корзину" class="btn btn-danger"></input>
                 </div>

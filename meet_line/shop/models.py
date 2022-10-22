@@ -81,7 +81,7 @@ class Card(models.Model):
         ]
 
 class ShopRequest(models.Model):
-
+    """Model for storage cards info. """
     card_id = models.CharField(
         max_length=40,
         verbose_name='Идентификатор корзины'
