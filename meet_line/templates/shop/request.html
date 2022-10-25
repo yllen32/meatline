@@ -1,11 +1,11 @@
 {% extends "shop/base.html" %}
 {% block title %}Заявка{% endblock %}
 {% block content %}
-  <div class="row justify-content-center">
-    <div class="col-md-8 p-5">
-      <div class="card">
+  <div class="row justify-content-center" style='background-color: #cde4f7'>
+    <div class="col-md-8 p-5 ">
+      <div class="card ">
         <div class="card-header text-center">Оформить заявку на доставку</div>
-          <div class="card-body">
+          <div class="container ">
               {% if form.errors %}
                   {% for field in form %} 
                     {% for error in field.errors %}            
@@ -20,11 +20,8 @@
                     </div>
                   {% endfor %}
               {% endif %}
-
               <form method="post" action="#">
               {% csrf_token %}
-
-              {# Выводим поля в цикле, по отдельности #}
               {% for field in form %} 
                 <div class="form-group row my-3">
                   <label for="{{ field.id_for_label }}">
