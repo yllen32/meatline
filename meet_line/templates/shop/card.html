@@ -2,8 +2,9 @@
 {% block title %} Корзина {% endblock %}
 {% block content %}
     {% for item in card %}
-      <div style="border-bottom-style: ridge;" class='row container'>
-        <div class="col-6">
+    
+      <div style="border: ridge; text-align: center" class='row'>
+        <div class="col-md-6 col-sm-6 ">
             <form action="{%url 'shop:card'%}" method = "post">
                 {% csrf_token %}
                 <input type="hidden" name='item_for_change' value="{{item.id}}"></input>
@@ -19,27 +20,26 @@
                       name="quantity_for_change"
                       title="от 0.5 до(через точку) 9.5 (кратно 0.5)"
                     >{{item.product.get_amount_display}})
-                    <input style="font-size: small" type ="submit" value="Изменить">
-                </h4>
+                    <p><input style="font-size: small" type ="submit" value="Изменить">   
         </div>
             </form>
-            <form action="{%url 'shop:card'%}" method = "post">
-                {% csrf_token %}
-        <div style="text-align: end"class="col-6">
+              <div class="col-md-6 col-sm-6">
+                <form action="{%url 'shop:card'%}" method = "post">
+                  {% csrf_token %}
                 <input type="hidden" name='item_for_delete' value="{{item.id}}"></input>
-            <h4>
                 {{item.price}} руб
-                <input 
-                  class="btn btn-primary" 
-                  type="submit" 
-                  value="Убрать">
-                </input>
-            </h4>  
-        </form>
-        </div>
-</div>
+                <p style =><input 
+                      class="btn btn-primary" 
+                      type="submit" 
+                      value="Убрать">
+                     </input>
+                  </h4>  
+                 </form>
+              </div>
+      </div>
+    
     {% endfor %}
-    <h2 style="text-align: end">Всего:{{total_price}} руб </h2>
+    <h2 style="text-align: end; margin: 0.5em">Всего:{{total_price}} руб </h2>
     <div class ="container text-center">
       <form action="{%url 'shop:request'%}">  
         <button 

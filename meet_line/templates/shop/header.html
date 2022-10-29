@@ -7,29 +7,30 @@
         {%if view == 'shop:shop'%}
        <div class="cardwrapper">
            <a href="{%url 'shop:card'%}">
-           <div class="">
            <h3  class=""> Корзина {{card.count}}</h3>
            <p class="smallcard">Товаров: {{card.count}}</p>
            <p class="smallcard">Сумма:{{total_price}}</p>     
-           </div>
+        </div>
             </a>
-           <div class="clearfix"></div>
-       </div>
+        <div class="clearfix"></div>
        {%endif%}				 
    </div>
-   <div class="clearfix"></div>	
    </div>
-   <ul class="megamenu skyblue" style ="background: white">
-      <li class="{% if view ==  'shop:shop'%} active grid {% endif %}" >
-        <a class="color1" href="{%url 'shop:shop'%}">Магазин</a>
-      </li>
-      <li class="{% if view ==  'shop:about'%}active grid{% endif %}">
-          <a class="color1" href="{%url 'shop:about'%}">О нас</a>
-      </li>
-      <li class="#">
-        <a class="color4" href="#">Контакты</a>
-      </li>   
-      <li class="#">
-        <a class="color5" href="#">Замариновать мясо</a>
-      </li>
+    <div> 
+        
+        <ul class="megamenu skyblue" style ="background: white">
+        <li  class="{% if view ==  'shop:shop'%} active grid {% endif %}" >
+            <a class="color1" href="{%url 'shop:shop'%}">Магазин</a>
+        </li>
+        <li class="{% if view ==  'shop:about'%}active grid{% endif %}">
+            <a class="color1" href="{%url 'shop:about'%}">О нас</a>
+        </li>
+        <li class="#">
+            <a class="color1" href="#">Контакты</a>
+        </li>   
+        <li class="#">
+            <a class="color1" href="#">Замариновать мясо</a>
+        </li>
+    </div>
+</div>
 {%endwith%}
