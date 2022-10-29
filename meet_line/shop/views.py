@@ -8,8 +8,12 @@ from .card import add_to_card, change_card, get_card_info
 from .forms import ShopRequestFrom
 
 class AboutShop(TemplateView):
-
+    """Staticview for about page."""
     template_name = 'shop/about.html'
+
+class ContactShop(TemplateView):
+    """Staticview for about page."""
+    template_name = 'shop/contacts.html'
 
 def shop(request):
     """Return products to main page and form for putting it in to card."""

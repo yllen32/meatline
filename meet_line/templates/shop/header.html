@@ -25,8 +25,8 @@
         <li class="{% if view ==  'shop:about'%}active grid{% endif %}">
             <a class="color1" href="{%url 'shop:about'%}">О нас</a>
         </li>
-        <li class="#">
-            <a class="color1" href="#">Контакты</a>
+        <li class="{% if view ==  'shop:contacts'%} active grid {% endif %}">
+            <a class="color1" href="{%url 'shop:contacts'%}">Контакты</a>
         </li>   
         <li class="#">
             <a class="color1" href="#">Замариновать мясо</a>
