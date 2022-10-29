@@ -15,7 +15,7 @@ body a {
 	-webkit-transition:0.5s all;
 	-moz-transition:0.5s all;
 	-o-transition:0.5s all;
-	-ms-transition:0.5s all;13
+	-ms-transition:0.5s all;
 }
 a:hover{
  text-decoration:none;
@@ -87,9 +87,15 @@ ul.megamenu.skyblue {
   text-indent: 100%;
   background: url(../images/move-top.png) no-repeat 0px 0px;
 }
-
 .smallcard{
 	margin: 2px;
 	font-family: monospace;
     text-align: end;
+}
+.cardwrapper{
+    position: fixed;
+    right: 10px;
+    z-index: 999999;
+    background: #ff00002e;
+    border-radius: 5px;
 }

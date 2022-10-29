@@ -4,7 +4,8 @@
          <a href="{%url 'shop:shop'%}"><h1>Мясной <span>РядЪ</span></h1> </a> 
      </div>
      <div class="header_right ">
-       <div class="#" style="position: fixed; right: 10px; z-index: 999999; background: #ff00002e; border-radius: 5px">
+        {%if view == 'shop:shop'%}
+       <div class="cardwrapper">
            <a href="{%url 'shop:card'%}">
            <div class="">
            <h3  class=""> Корзина {{card.count}}</h3>
@@ -13,7 +14,8 @@
            </div>
             </a>
            <div class="clearfix"></div>
-       </div>				 
+       </div>
+       {%endif%}				 
    </div>
    <div class="clearfix"></div>	
    </div>
