@@ -1,7 +1,7 @@
 {% extends 'shop/base.html' %}
 {% block title %} Корзина {% endblock %}
 {% block content %}
-    {% for item in card_items %}
+    {% for item in card %}
       <div style="border-bottom-style: ridge;" class='row container'>
         <div class="col-6">
             <form action="{%url 'shop:card'%}" method = "post">

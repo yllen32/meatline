@@ -1,12 +1,15 @@
+{% with request.resolver_match.view_name as view %}
 <div class="head-t">
     <div class="logo">
-         <a href="{%url 'shop:index'%}"><h1>Мясной <span>РядЪ</span></h1> </a> 
+         <a href="{%url 'shop:shop'%}"><h1>Мясной <span>РядЪ</span></h1> </a> 
      </div>
      <div class="header_right ">
        <div class="#" style="position: fixed; right: 10px; z-index: 999999; background: #ff00002e; border-radius: 5px">
            <a href="{%url 'shop:card'%}">
            <div class="">
-           <h3  class=""> Корзина ({{card.count}}) <i class="glyphicon glyphicon-shopping-cart"></i></h3>     
+           <h3  class=""> Корзина {{card.count}}</h3>
+           <p class="smallcard">Товаров: {{card.count}}</p>
+           <p class="smallcard">Сумма:{{total_price}}</p>     
            </div>
             </a>
            <div class="clearfix"></div>
@@ -15,11 +18,16 @@
    <div class="clearfix"></div>	
    </div>
    <ul class="megamenu skyblue" style ="background: white">
-       <li class="active grid">
-        <a class="color1" href="{%url 'shop:index'%}">
-        Магазин
-        </a>
-    </li>
-       <li class="active grid"><a class="color2" href="{%url 'shop:about'%}">О нас</a>
-       <li><a class="color4" href="#">Контакты</a>
-           <li><a class="color5" href="#">Замариновать мясо</a>
+      <li class="{% if view ==  'shop:shop'%} active grid {% endif %}" >
+        <a class="color1" href="{%url 'shop:shop'%}">Магазин</a>
+      </li>
+      <li class="{% if view ==  'shop:about'%}active grid{% endif %}">
+          <a class="color1" href="{%url 'shop:about'%}">О нас</a>
+      </li>
+      <li class="#">
+        <a class="color4" href="#">Контакты</a>
+      </li>   
+      <li class="#">
+        <a class="color5" href="#">Замариновать мясо</a>
+      </li>
+{%endwith%}

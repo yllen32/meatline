@@ -12,7 +12,7 @@
                     class="img-responsive"
                     />
                 <h4 class="text-center">{{product.name}}</h4>
-                <form action="{%url "shop:index" %}" method="post">
+                <form action="{%url "shop:shop" %}" method="post">
                     {% csrf_token %}
                 <div>
                     <div style = "width: 100px; margin: auto; text-align: center">

@@ -4,21 +4,21 @@ from django.db.models import Sum
 from django.views.generic.base import TemplateView
 
 from .models import Product, Card
-from .card import add_to_card, change_card
+from .card import add_to_card, change_card, get_card_info
 from .forms import ShopRequestFrom
 
 class AboutShop(TemplateView):
 
     template_name = 'shop/about.html'
 
-def index(request):
+def shop(request):
     """Return products to main page and form for putting it in to card."""
     products = Product.objects.all()
     if not request.session.session_key:
         # Create session by adding date of first join in to the site
         request.session['date_of_key'] = str(datetime.now())
     session_key = request.session.session_key
-    card = Card.objects.filter(card_id = session_key)
+    card, total_price = get_card_info(session_key)
     if request.method == 'POST':
         card = add_to_card(
             request_data=request.POST,
@@ -27,22 +27,20 @@ def index(request):
         )
     return render(request, 'shop/products.html', context = {
             'products':products,
-            'card':card
+            'card':card,
+            'total_price': total_price
         },
     )
 
 def card(request):
     """Return a list of card items"""
-    card_items = Card.objects.filter(card_id=request.session.session_key)
+    card, total_price = get_card_info(request.session.session_key)
     if request.method == 'POST':
-        card_items = change_card(
-            request_data=request.POST, card_items=card_items
+        card = change_card(
+            request_data=request.POST, card_items=card
         )
-    total_price = (
-        card_items.aggregate(total_price = Sum('price'))
-        ).get('total_price') or 0
     return render(request, 'shop/card.html', context={
-        'card_items': card_items,
+        'card': card,
         'total_price': total_price
         }
     )

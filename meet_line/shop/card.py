@@ -1,6 +1,7 @@
 from decimal import Decimal
 
 from django.shortcuts import get_object_or_404
+from django.db.models import Sum
 
 from .models import Card
 from .validators import validate_card_quantity
@@ -38,4 +39,12 @@ def change_card(request_data, card_items):
         product.quantity = Decimal(quantity)
         product.save()
     return Card.objects.filter(card_id = product.card_id)
+
+def get_card_info(key):
+    """Get a main card information."""
+    card = Card.objects.filter(card_id = key)
+    total_price = (
+        card.aggregate(total_price = Sum('price'))
+        ).get('total_price') or 0
+    return card, total_price
 
