@@ -5,6 +5,7 @@ from django.views.generic.base import TemplateView
 from .models import Product, Card
 from .card import add_to_card, change_card, get_card_info
 from .forms import ShopRequestFrom
+from .vk_bot import send_vk_message
 
 class AboutShop(TemplateView):
     """Staticview for about page."""
@@ -53,5 +54,6 @@ def request(request):
     form = ShopRequestFrom(request.POST or None)
     if form.is_valid():
         form.save()
-        return redirect('shop:index' )
+        send_vk_message(form.cleaned_data,)
+        return redirect('shop:shop' )
     return render(request, 'shop/request.html', context={'form': form})
