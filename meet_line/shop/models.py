@@ -17,7 +17,6 @@ class Product(models.Model):
         ('kg', 'кг'),
         ('pcs', 'шт')
     ]
-
     name = models.CharField(max_length=50, verbose_name='Название товара')
     price = models.DecimalField(verbose_name='Цена', max_digits=6, decimal_places=2)
     description = models.TextField(verbose_name='Описание товара')
@@ -32,7 +31,10 @@ class Product(models.Model):
         default = 'kg',
         verbose_name = 'Мера (кг или шт)'
         )
-    
+    is_available = models.BooleanField(
+        default=True,
+        verbose_name="Товар доступен?"
+    )
 
     def __str__(self):
         return self.name

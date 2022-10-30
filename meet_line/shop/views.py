@@ -17,7 +17,7 @@ class ContactShop(TemplateView):
 
 def shop(request):
     """Return products to main page and form for putting it in to card."""
-    products = Product.objects.all()
+    products = Product.objects.filter(is_available=True)
     if not request.session.session_key:
         # Create session by adding date of first join in to the site
         request.session['date_of_key'] = str(datetime.now())

@@ -41,7 +41,7 @@ def change_card(request_data, card_items):
     return Card.objects.filter(card_id = product.card_id)
 
 def get_card_info(key):
-    """Get a main card information."""
+    """Get card details."""
     card = Card.objects.filter(card_id = key)
     total_price = (
         card.aggregate(total_price = Sum('price'))
