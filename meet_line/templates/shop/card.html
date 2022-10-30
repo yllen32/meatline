@@ -2,7 +2,6 @@
 {% block title %} Корзина {% endblock %}
 {% block content %}
     {% for item in card %}
-    
       <div style="border: ridge; text-align: center" class='row'>
         <div class="col-md-6 col-sm-6 ">
             <form action="{%url 'shop:card'%}" method = "post">
@@ -20,7 +19,13 @@
                       name="quantity_for_change"
                       title="от 0.5 до(через точку) 9.5 (кратно 0.5)"
                     >{{item.product.get_amount_display}})
-                    <p><input style="font-size: small" type ="submit" value="Изменить">   
+                    <p>
+                      <input 
+                        style="font-size: small" 
+                        type ="submit" 
+                        value="Изменить"
+                        title="Введите новое колличество выше, и нажмите изменить чтоб изменить его))"
+                      >   
         </div>
             </form>
               <div class="col-md-6 col-sm-6">
@@ -37,9 +42,11 @@
                  </form>
               </div>
       </div>
-    
     {% endfor %}
-    <h2 style="text-align: end; margin: 0.5em">Всего:{{total_price}} руб </h2>
+    <h2 
+      style="text-align: end; margin: 0.5em"
+      title="Общая стоимость заказа"
+    >{{total_price}} руб </h2>
     <div class ="container text-center">
       <form action="{%url 'shop:request'%}">  
         <button 
