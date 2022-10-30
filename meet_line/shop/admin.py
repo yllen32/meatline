@@ -1,5 +1,7 @@
 from django.contrib import admin
 
-from .models import Product
+from .models import Product, ShopRequest
 
-admin.site.register(Product)
+@admin.register(Product, ShopRequest)
+class ShopAdmin(admin.ModelAdmin):
+    pass

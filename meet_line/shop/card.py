@@ -24,7 +24,9 @@ def add_to_card(request_data, products, card_id):
     )
     current_user_card.quantity = quantity
     current_user_card.save()
-    return Card.objects.filter(card_id = card_id)
+    card, total_price = get_card_info(card_id)
+    return card, total_price
+
 
 def change_card(request_data, card_items):
     """"""
@@ -38,7 +40,8 @@ def change_card(request_data, card_items):
         product = get_object_or_404(card_items, id=int(id_for_change))
         product.quantity = Decimal(quantity)
         product.save()
-    return Card.objects.filter(card_id = product.card_id)
+    card, total_price = get_card_info(product.card_id)
+    return card, total_price
 
 def get_card_info(key):
     """Get card details."""

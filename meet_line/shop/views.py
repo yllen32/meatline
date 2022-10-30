@@ -1,6 +1,5 @@
 from datetime import datetime
 from django.shortcuts import render, redirect
-from django.db.models import Sum
 from django.views.generic.base import TemplateView
 
 from .models import Product, Card
@@ -24,7 +23,7 @@ def shop(request):
     session_key = request.session.session_key
     card, total_price = get_card_info(session_key)
     if request.method == 'POST':
-        card = add_to_card(
+        card, total_price = add_to_card(
             request_data=request.POST,
             products=products,
             card_id=session_key
@@ -40,7 +39,7 @@ def card(request):
     """Return a list of card items"""
     card, total_price = get_card_info(request.session.session_key)
     if request.method == 'POST':
-        card = change_card(
+        card, total_price = change_card(
             request_data=request.POST, card_items=card
         )
     return render(request, 'shop/card.html', context={
