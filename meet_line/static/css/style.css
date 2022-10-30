@@ -45,8 +45,7 @@ label{
   float:left;
 }
 .header_right {
-      float: right;
-    margin-top: 1em;
+  float: right;
 }
 .logo a h1{
  font-size: 2.7em;

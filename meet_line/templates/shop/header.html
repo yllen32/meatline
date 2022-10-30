@@ -1,9 +1,6 @@
 {% with request.resolver_match.view_name as view %}
 <div class="head-t">
-    <div class="logo">
-         <a href="{%url 'shop:shop'%}"><h1>Мясной <span>РядЪ</span></h1> </a> 
-     </div>
-     <div class="header_right ">
+    <div class="header_right ">
         {%if view == 'shop:shop'%}
        <div class="cardwrapper">
            <a href="{%url 'shop:card'%}">
@@ -15,7 +12,15 @@
         <div class="clearfix"></div>
        {%endif%}				 
    </div>
-   </div>
+    <div class='row'>
+      <div class="col md-6 logo">
+           <a href="{%url 'shop:shop'%}"><h1>Мясной <span>РядЪ</span></h1> </a> 
+       </div>
+      <div class="col md-6" style="text-align: end">
+        {%include 'shop/includes/icons.html'%}
+      </div>
+    </div>
+     
     <div> 
         
         <ul class="megamenu skyblue" style ="background: white">
