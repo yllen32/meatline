@@ -1,7 +1,7 @@
 {% with request.resolver_match.view_name as view %}
 <div class="head-t">
     <div class="header_right ">
-        {%if view == 'shop:shop'%}
+        {%if view == 'shop:shop' or view == 'shop:request'%}
        <div class="cardwrapper">
            <a href="{%url 'shop:card'%}">
            <h3  class=""> Корзина {{card.count}}</h3>

@@ -71,7 +71,7 @@ ul.megamenu.skyblue {
   background: white;
 }
 .products-grids{
-	padding:4em 0 0;
+	padding:2em 0 0;
 }
 #toTop {
   display: none;
@@ -100,4 +100,8 @@ ul.megamenu.skyblue {
 }
 .contacts h4{
 	margin: 0.4em
+}
+.request_info{
+    margin-bottom: 2em;
+    margin-top: 1em;
 }

@@ -52,8 +52,17 @@ def card(request):
 def request(request):
     """Return a form to making request."""
     form = ShopRequestFrom(request.POST or None)
+    card_id = request.session.session_key
+    card, total_price = get_card_info(card_id)
     if form.is_valid():
-        form.save()
-        send_vk_message(form.cleaned_data,)
+        shop_request = form.save(commit=False)
+        shop_request.card_id = card_id
+        shop_request.save
+        send_vk_message(form.cleaned_data, card)
         return redirect('shop:shop' )
-    return render(request, 'shop/request.html', context={'form': form})
+    return render(request, 'shop/request.html', context={
+        'form': form,
+        'card': card,
+        'total_price': total_price
+        }
+    )

@@ -19,7 +19,7 @@ class Product(models.Model):
     ]
     name = models.CharField(max_length=50, verbose_name='Название товара')
     price = models.DecimalField(verbose_name='Цена', max_digits=6, decimal_places=2)
-    description = models.TextField(verbose_name='Описание товара')
+    description = models.TextField(verbose_name='Описание товара', blank=True, null=True)
     picture_url = models.ImageField(
         verbose_name='Фото товара',
         max_length=100,
@@ -70,7 +70,6 @@ class Card(models.Model):
         )
     
     def save(self, *args, **kwargs):
-        print(self.quantity)
         self.price = Decimal(self.quantity or 1)*self.product.price
         super(Card, self).save(*args, **kwargs)
         
@@ -121,7 +120,6 @@ class ShopRequest(models.Model):
         default=False,
         verbose_name='Доставка выполнена?'
     )
-
 
     class Meta:
         verbose_name='Заявка'
