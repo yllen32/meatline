@@ -39,6 +39,7 @@ class Product(models.Model):
     def __str__(self):
         return self.name
     
+    
     class Meta:
         verbose_name='Товар'
         verbose_name_plural='Товары'
@@ -72,6 +73,19 @@ class Card(models.Model):
     def save(self, *args, **kwargs):
         self.price = Decimal(self.quantity or 1)*self.product.price
         super(Card, self).save(*args, **kwargs)
+
+    def __str__(self):
+        """Return a string with necessary request info."""
+        data = (
+            self.product,
+            self.quantity,
+            self.product.get_amount_display(),
+            self.price,
+        )
+        request_info = ''
+        for item in data:
+            request_info += str(item) + ' '
+        return request_info
         
     
     class Meta:
@@ -120,6 +134,18 @@ class ShopRequest(models.Model):
         default=False,
         verbose_name='Доставка выполнена?'
     )
+
+    def __str__(self):
+        data = (
+            self.name,
+            self.phone,
+            self.address,
+            self.comment,
+        )
+        consumer_info = ''
+        for item in data:
+            consumer_info += str(item) + '\n'
+        return consumer_info
 
     class Meta:
         verbose_name='Заявка'
