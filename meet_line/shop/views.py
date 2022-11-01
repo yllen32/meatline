@@ -1,7 +1,7 @@
 from datetime import datetime
 from django.shortcuts import render, redirect
 from django.views.generic.base import TemplateView
-from django.shortcuts import get_object_or_404
+from django.shortcuts import get_list_or_404
 
 from .models import Product, ShopRequest
 from .card import add_to_card, change_card, get_card_info
@@ -59,8 +59,8 @@ def request(request):
         shop_request = form.save(commit=False)
         shop_request.card_id = card_id
         shop_request.save()
-        request = get_object_or_404(ShopRequest, card_id=card_id)
-        send_vk_message(request, card)
+        request = get_list_or_404(ShopRequest, card_id=card_id)
+        send_vk_message(request[-1], card)
         return redirect('shop:shop' )
     return render(request, 'shop/request.html', context={
         'form': form,
