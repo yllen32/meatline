@@ -1,14 +1,19 @@
 from decimal import Decimal
-from email.policy import default
-from tabnanny import verbose
 
 from django.db import models
 from django.contrib.auth import get_user_model
-from django.core.validators import MinValueValidator, MaxValueValidator
 
 from .validators import validate_card_quantity, phone_validator
 
 User = get_user_model()
+
+
+class Category(models.Model):
+    name = models.CharField(
+        max_length=100,
+        verbose_name="Категория товара",
+    )
+    slug = models.SlugField(verbose_name="Имя для url")
 
 
 class Product(models.Model):
@@ -18,31 +23,41 @@ class Product(models.Model):
         ('pcs', 'шт')
     ]
     name = models.CharField(max_length=50, verbose_name='Название товара')
-    price = models.DecimalField(verbose_name='Цена', max_digits=6, decimal_places=2)
-    description = models.TextField(verbose_name='Описание товара', blank=True, null=True)
+    price = models.DecimalField(
+        verbose_name='Цена', max_digits=6, decimal_places=2
+    )
+    description = models.TextField(
+        verbose_name='Описание товара', blank=True, null=True
+    )
     picture_url = models.ImageField(
         verbose_name='Фото товара',
         max_length=100,
-        upload_to = 'images/'
+        upload_to='images/'
     )
     amount = models.CharField(
         choices=AMOUNT_CHOICES,
-        max_length = 3,
-        default = 'kg',
-        verbose_name = 'Мера (кг или шт)'
+        max_length=3,
+        default='kg',
+        verbose_name='Мера (кг или шт)'
         )
     is_available = models.BooleanField(
         default=True,
         verbose_name="Товар доступен?"
     )
+    category = models.ForeignKey(
+        Category,
+        on_delete=models.SET_NULL,
+        verbose_name="Категория к которой относится товар.",
+        null=True,
+        related_name="products"
+    )
 
     def __str__(self):
         return self.name
-    
 
     class Meta:
-        verbose_name='Товар'
-        verbose_name_plural='Товары'
+        verbose_name = 'Товар'
+        verbose_name_plural = 'Товары'
 
 
 class Card(models.Model):
@@ -70,7 +85,7 @@ class Card(models.Model):
         max_length=40,
         verbose_name='Идентификатор корзины'
         )
-    
+
     def save(self, *args, **kwargs):
         self.price = Decimal(self.quantity or 1)*self.product.price
         super(Card, self).save(*args, **kwargs)
@@ -87,8 +102,7 @@ class Card(models.Model):
         for item in data:
             request_info += str(item) + ' '
         return request_info
-        
-    
+
     class Meta:
         constraints = [
             models.UniqueConstraint(
@@ -114,7 +128,7 @@ class ShopRequest(models.Model):
         blank=False
         )
     phone = models.CharField(
-        validators=[phone_validator,],
+        validators=[phone_validator, ],
         verbose_name='Номер телефона для связи',
         help_text='Введите номер вашего мобильного телефона',
         max_length=20
@@ -122,7 +136,7 @@ class ShopRequest(models.Model):
     address = models.CharField(
         max_length=300,
         verbose_name="Адрес доставки",
-        help_text="Введите адрес по которому доставить покупки" 
+        help_text="Введите адрес по которому доставить покупки"
     )
     comment = models.TextField(
         max_length=300,
@@ -149,5 +163,5 @@ class ShopRequest(models.Model):
         return consumer_info
 
     class Meta:
-        verbose_name='Заявка'
-        verbose_name_plural='Заявки'
+        verbose_name = 'Заявка'
+        verbose_name_plural = 'Заявки'

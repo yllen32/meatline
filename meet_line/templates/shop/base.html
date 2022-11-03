@@ -19,14 +19,8 @@
    <div class="container">
 	{% include 'shop/includes/development.html'%}
 	  {% include 'shop/header.html' %}
-	<div class="products">
-		<div class="container">
-			<div class="products-grids">
-				    {% block content %}
-					{% endblock %}	
-			</div>
-		</div>
-	</div>
+		{% block content %}
+		{% endblock %}	
 	</div>
 		<a href="#home" id="toTop" class="scroll" style="display: block;"> <span id="toTopHover" style="opacity: 1;"> </span></a>
 		{% include 'shop/includes/development.html'%}

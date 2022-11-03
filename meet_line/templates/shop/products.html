@@ -1,8 +1,12 @@
 {% extends 'shop/base.html' %}
 {% block title %} Магазин {%endblock%}
 {% block content %}
-    {% for product in products %}
-    {% if forloop.first %}<div class="row">{% endif %}
+{% include "shop/includes/category.html"%}
+  <div class="products">
+    <div class="container">
+      <div class="products-grids">
+      {% for product in products %}
+      {% if forloop.first %}<div class="col">{% endif %}
         <div class=" container col-md-4 col-sm-6">
             <div class="d-inline-flex">
                 <img
@@ -12,7 +16,7 @@
                     class="img-responsive"
                     />
                 <h4 class="text-center">{{product.name}}</h4>
-                <form action="{%url "shop:shop" %}" method="post">
+                <form action="{%url "shop:shop" product.category.slug %}" method="post">
                     {% csrf_token %}
                 <div>
                     <div style = "width: 100px; margin: auto; text-align: center">
@@ -58,5 +62,8 @@
                 </script>
         {%endfor%}
     </div>
+</div>
+</div>
+</div>
 </div>
 {% endblock %}

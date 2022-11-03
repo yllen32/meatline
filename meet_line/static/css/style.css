@@ -107,3 +107,16 @@ ul.megamenu.skyblue {
     margin-top: 1em;
     margin-left: 1em
 }
+.category{
+    border-left: groove;
+    border-width: thin;
+    padding-left: 4px;
+}
+.category-active{
+  border-left: groove;
+  border-width: thin;
+  padding-left: 4px;
+  background-color: #d21818;
+  color: whitesmoke;
+  font-weight: 300;
+}
