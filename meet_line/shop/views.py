@@ -1,12 +1,17 @@
 from datetime import datetime
+
+from loguru import logger
 from django.shortcuts import render, redirect
 from django.views.generic.base import TemplateView
 from django.shortcuts import get_list_or_404, get_object_or_404
 
-from .models import Product, ShopRequest, Category
+from .models import ShopRequest, Category
 from .card import add_to_card, change_card, get_card_info
 from .forms import ShopRequestFrom
 from .vk_bot import send_vk_message
+
+fmt = "{time} - {name} - {level} - {message}"
+logger.add("spam.log", level="INFO", format=fmt)
 
 class AboutShop(TemplateView):
     template_name = 'shop/about.html'
@@ -64,6 +69,7 @@ def request(request):
         shop_request = form.save(commit=False)
         shop_request.card_id = card_id
         shop_request.save()
+        logger.info(f"maked request for {card_id}")
         request = get_list_or_404(ShopRequest, card_id=card_id)
         send_vk_message(request[-1], card)
         return redirect('shop:about' )

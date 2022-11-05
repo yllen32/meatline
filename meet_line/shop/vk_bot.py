@@ -1,7 +1,10 @@
 import os
+import vk_api
 
 from dotenv import load_dotenv
-import vk_api
+
+from .views import logger
+
 
 load_dotenv()
 
@@ -25,5 +28,8 @@ def send_vk_message(request_data, items_data):
     messages = prepare_messages(request_data, items_data)
     bot = vk_api.VkApi(token = VK_KEY)
     vk = bot.get_api()
-    for message in messages:
-        vk.messages.send(user_id=ADMIN_VK_ID, random_id=0, message=message)
+    try:
+        for message in messages:
+            vk.messages.send(user_id=ADMIN_VK_ID, random_id=0, message=message)
+    except Exception as err:
+        logger.exception("Error during vk message sending")
