@@ -53,7 +53,6 @@
                 var slider{{forloop.counter0}} = document.getElementById("id_slider_for_product_{{product.pk}}");
                 var output{{forloop.counter0}} = document.getElementById("demo-{{forloop.counter0}}");
                 output{{forloop.counter0}}.innerHTML = slider{{forloop.counter0}}.value;
-                
                 slider{{forloop.counter0}}.oninput = function() {
                   output{{forloop.counter0}}.innerHTML = this.value;
                 }

@@ -7,25 +7,10 @@
             <form action="{%url 'shop:card'%}" method = "post">
                 {% csrf_token %}
                 <input type="hidden" name='item_for_change' value="{{item.id}}"></input>
-                <h4>
+                <h4 style="margin-top:1em">
                     {{item.product.name}}
-                    (<input 
-                      type="text"
-                      size="1"
-                      pattern="0.5|[1-9]\.[05]"
-                      maxlength="3"
-                      value="{{item.quantity}}"
-                      style="font-size: smaller"
-                      name="quantity_for_change"
-                      title="от 0.5 до(через точку) 9.5 (кратно 0.5)"
-                    >{{item.product.get_amount_display}})
-                    <p>
-                      <input 
-                        style="font-size: small" 
-                        type ="submit" 
-                        value="Изменить"
-                        title="Введите новое колличество выше, и нажмите изменить чтоб изменить его))"
-                      >   
+                    ({{item.quantity}}{{item.product.get_amount_display}})
+                </h4>
         </div>
             </form>
               <div class="col-md-6 col-sm-6">
@@ -43,6 +28,10 @@
               </div>
       </div>
     {% endfor %}
+    <span style="font-size: x-small; color: #645b5b">
+      чтоб изменить колличество вернитесь в магазин и установите новое
+    </span>
+
     <h2 
       style="text-align: end; margin: 0.5em"
       title="Общая стоимость заказа"
