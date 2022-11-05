@@ -33,8 +33,8 @@
         <li class="{% if view ==  'shop:contacts'%} active grid {% endif %}">
             <a class="color1" href="{%url 'shop:contacts'%}">Контакты</a>
         </li>   
-        <li class="#">
-            <a class="color1" href="#">Замариновать мясо</a>
+        <li class="{% if view ==  'shop:delivery'%} active grid {% endif %}">
+            <a class="color1" href="{%url 'shop:delivery'%}">Доставка</a>
         </li>
     </div>
 </div>

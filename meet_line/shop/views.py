@@ -9,12 +9,13 @@ from .forms import ShopRequestFrom
 from .vk_bot import send_vk_message
 
 class AboutShop(TemplateView):
-    """Staticview for about page."""
     template_name = 'shop/about.html'
 
 class ContactShop(TemplateView):
-    """Staticview for about page."""
     template_name = 'shop/contacts.html'
+
+class DeliveryShop(TemplateView):
+    template_name = 'shop/delivery.html'
 
 def shop(request, category):
     """Return products to main page and form for putting it in to card."""
