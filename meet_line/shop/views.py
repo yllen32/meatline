@@ -18,7 +18,8 @@ class ContactShop(TemplateView):
 
 def shop(request, category):
     """Return products to main page and form for putting it in to card."""
-    category = get_object_or_404(Category, slug=category)
+    categories = Category.objects.all()
+    category = get_object_or_404(categories, slug=category)
     products = category.products.all()
     if not request.session.session_key:
         # Create session by adding date of first join in to the site
@@ -34,7 +35,9 @@ def shop(request, category):
     return render(request, 'shop/products.html', context = {
             'products':products,
             'card':card,
-            'total_price': total_price
+            'total_price': total_price,
+            'categories': categories,
+            'category': category
         },
     )
 
@@ -69,3 +72,7 @@ def request(request):
         'total_price': total_price
         }
     )
+
+def shop_redirect(request):
+    """Redirect user to """
+    return redirect('shop:shop', category = Category.objects.get(pk=2).slug)

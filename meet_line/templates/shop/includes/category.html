@@ -1,13 +1,13 @@
-<div class = >
+<div class = "container">
 <div  style="margin-left:1em">
-    <p class=><a class="category">
-        Свежее мясо
-    </a></span>
-    <p class= ""><a class="category-active">
-        Замароженные полуфабрикаты
-    </a></span>
-    <p class=" "><a class="category">
-        Куринные продукты
-    </a></span>
+    {% for cat in categories %}
+      {% if cat.products.count != 0 %}
+        <p ><a 
+          class="{% if cat.pk == category.pk %}category-active{%else%}category{%endif%}"
+          href="{% url "shop:shop" cat.slug%}">
+        {{cat.name}}
+        </a>
+        {%endif%}
+    {% endfor %}
 </div>
 </div>

@@ -15,6 +15,13 @@ class Category(models.Model):
     )
     slug = models.SlugField(verbose_name="Имя для url")
 
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        verbose_name = 'Категория'
+        verbose_name_plural = 'Категории товаров'
+
 
 class Product(models.Model):
 
