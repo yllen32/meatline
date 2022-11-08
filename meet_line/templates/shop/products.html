@@ -19,7 +19,7 @@
                     {% csrf_token %}
                 <div>
                     <div style = "width: 100px; margin: auto; text-align: center">
-                        <span style =  class="item_price valsa">{{product.price}} </span>
+                        <span style =  class="item_price valsa">{{product.price|floatformat:"0"}} руб./ {{product.get_amount_display}} </span>
                     </div>
                 </div>
                 <div style = "width: 150px; margin: auto">

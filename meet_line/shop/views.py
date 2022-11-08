@@ -11,7 +11,7 @@ from .forms import ShopRequestFrom
 from .vk_bot import send_vk_message
 
 fmt = "{time} - {name} - {level} - {message}"
-logger.add("spam.log", level="INFO", format=fmt)
+logger.add("request.log", level="INFO", format=fmt)
 
 class AboutShop(TemplateView):
     template_name = 'shop/about.html'

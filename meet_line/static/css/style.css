@@ -120,3 +120,7 @@ ul.megamenu.skyblue {
   color: whitesmoke;
   font-weight: 300;
 }
+.warning{
+  font-size: 14px;
+  background: #f7e988;
+}

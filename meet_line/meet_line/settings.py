@@ -12,10 +12,15 @@ SECRET_KEY = str(os.getenv('SECRET_KEY'))
 
 DEBUG = bool(strtobool(os.getenv('DEBUG', 'False')))
 
-ALLOWED_HOSTS = ['51.250.81.36', '127.0.0.1', 'localhost', '192.168.0.105']
+ALLOWED_HOSTS = [
+    str(os.getenv('SERVER_IP')), 
+    '127.0.0.1',
+    'localhost',
+    '192.168.0.105'
+    ]
 
 INSTALLED_APPS = [
-    'django.contrib.admin',
+    'meet_line.apps.MyAdminConfig',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
@@ -100,11 +105,12 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 
-#STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
+STATIC_ROOT = os.path.join(BASE_DIR, '/static/')
+print("_______",BASE_DIR)
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
+#STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
 
 MEDIA_URL = '/media/'
 
