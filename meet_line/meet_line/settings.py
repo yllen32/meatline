@@ -13,7 +13,7 @@ SECRET_KEY = str(os.getenv('SECRET_KEY'))
 DEBUG = bool(strtobool(os.getenv('DEBUG', 'False')))
 
 ALLOWED_HOSTS = [
-    str(os.getenv('SERVER_IP')), 
+    '109.198.194.170', 
     '127.0.0.1',
     'localhost',
     '192.168.0.105'
