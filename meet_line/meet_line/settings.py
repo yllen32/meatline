@@ -113,3 +113,5 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 
 SESSION_COOKIE_AGE = 2419200 #two weeks
+
+ADMIN_PATH = str(os.getenv('ADMIN_PATH'))

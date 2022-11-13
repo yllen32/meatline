@@ -5,7 +5,7 @@ from django.shortcuts import render, redirect
 from django.views.generic.base import TemplateView
 from django.shortcuts import get_list_or_404, get_object_or_404
 
-from .models import ShopRequest, Category
+from .models import ShopRequest, Category, Card
 from .card import add_to_card, change_card, get_card_info
 from .forms import ShopRequestFrom
 from .vk_bot import send_vk_message
@@ -72,6 +72,7 @@ def request(request):
         logger.info(f"maked request for {card_id}")
         request = get_list_or_404(ShopRequest, card_id=card_id)
         send_vk_message(request[-1], card)
+        card = Card.objects.filter(card_id=card_id).delete()
         return redirect('shop:about' )
     return render(request, 'shop/request.html', context={
         'form': form,
@@ -81,5 +82,6 @@ def request(request):
     )
 
 def shop_redirect(request):
-    """Redirect user to """
-    return redirect('shop:shop', category = Category.objects.get(pk=2).slug)
+    """Redirect user to shop page."""
+    category = Category.objects.all()[0] # take first category
+    return redirect('shop:shop', category = category.slug)
