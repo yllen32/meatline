@@ -19,4 +19,3 @@ def notification_processor(request):
         return {
             'notification' : False
         }
-     
