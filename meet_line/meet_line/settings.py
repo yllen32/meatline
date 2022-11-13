@@ -8,6 +8,8 @@ load_dotenv()
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+CSRF_TRUSTED_ORIGINS = ["http://*.109.198.194.170",]
+
 SECRET_KEY = str(os.getenv('SECRET_KEY'))
 
 DEBUG = bool(strtobool(os.getenv('DEBUG', 'False')))
