@@ -22,6 +22,7 @@ class ContactShop(TemplateView):
 class DeliveryShop(TemplateView):
     template_name = 'shop/delivery.html'
 
+
 def shop(request, category):
     """Return products to main page and form for putting it in to card."""
     categories = Category.objects.all()
@@ -73,7 +74,7 @@ def request(request):
         request = get_list_or_404(ShopRequest, card_id=card_id)
         send_vk_message(request[-1], card)
         card = Card.objects.filter(card_id=card_id).delete()
-        return redirect('shop:about' )
+        return redirect('shop:about')
     return render(request, 'shop/request.html', context={
         'form': form,
         'card': card,

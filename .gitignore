@@ -129,7 +129,7 @@ dmypy.json
 .pyre/
 
 
-#meet_line/media/
-#meet_line/static/img 
+meet_line/media/
+meet_line/static/img 
 plans.txt 
 meet_line/db.sqlite3

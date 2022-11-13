@@ -54,5 +54,34 @@
           </div>
         </div>
       </div> 
-  </div> 
+  </div>
+  <script>
+    const input = document.querySelector('input[name="phone"]')
+
+        function handleInput (e) {
+            const v = e.target.value
+
+            let r = v.replace(/\D/g, '')
+
+            r = r.replace(' ', '')
+            if (v.length !== 1) {
+                r = r.replace(/7/, '')
+            }
+            r = r.replace('+', '')
+
+            if (r.length > 8) {
+                r = r.replace(/^(\d{0,3})(\d{0,3})(\d{0,2})(\d{0,2}).*/,"+7 $1 $2-$3-$4")
+            } else if (r.length > 6) {
+                r = r.replace(/^(\d{0,3})(\d{0,3})(\d{0,2})/,"+7 $1 $2-$3")
+            } else if (r.length > 3) {
+                r = r.replace(/^(\d{0,3})(\d{0,3})/,"+7 $1 $2")
+            } else {
+                r = r.replace(/^(\d{0,3})/,"+7 $1")
+            }
+
+            input.value = r
+        }
+
+        input.addEventListener('input', handleInput)
+</script> 
 {% endblock %} 
