@@ -18,6 +18,7 @@
 <body>
    <div class="container">
 	{% include 'shop/includes/development.html'%}
+	{%if notification %}{% include 'shop/includes/notification.html'%}{%endif%}
 	  {% include 'shop/header.html' %}
 		{% block content %}
 		{% endblock %}	

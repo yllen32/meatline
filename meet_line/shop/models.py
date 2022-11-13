@@ -156,6 +156,11 @@ class ShopRequest(models.Model):
         default=False,
         verbose_name='Доставка выполнена?'
     )
+    request_date = models.DateTimeField(
+        auto_now=True,
+        verbose_name='Дата заявки',
+        null=True,
+    )
 
     def __str__(self):
         data = (
