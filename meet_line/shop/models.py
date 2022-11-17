@@ -3,6 +3,8 @@ from decimal import Decimal
 from django.db import models
 from django.contrib.auth import get_user_model
 
+from PIL import Image
+
 from .validators import validate_card_quantity, phone_validator
 
 User = get_user_model()
@@ -61,6 +63,15 @@ class Product(models.Model):
 
     def __str__(self):
         return self.name
+    
+    def save(self):
+        super().save()
+        image_path = self.picture_url.path
+        img = Image.open(image_path)
+        if img.height>900 or img.width > 900:
+            img.thumbnail((600, 600))
+            img.save(image_path)
+
 
     class Meta:
         verbose_name = 'Товар'
