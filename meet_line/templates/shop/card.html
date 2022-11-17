@@ -1,6 +1,7 @@
 {% extends 'shop/base.html' %}
 {% block title %} Корзина {% endblock %}
 {% block content %}
+{% if not card%} <h4 class="text-center">Ваша корзина пуста &#128532<h4>{% endif %}
     {% for item in card %}
       <div style="border: ridge; text-align: center" class='row'>
         <div class="col-md-6 col-sm-6 ">
@@ -28,6 +29,7 @@
               </div>
       </div>
     {% endfor %}
+    {%if card%}
     <span style="font-size: x-small; color: #645b5b">
       чтобы изменить колличество вернитесь в магазин и установите новое
     </span>
@@ -50,4 +52,5 @@
           type="submit"
           >Оформить заявку
         </button></div></form>
+    {% endif%}
 {% endblock %}

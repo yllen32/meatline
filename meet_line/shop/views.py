@@ -66,6 +66,8 @@ def request(request):
     form = ShopRequestFrom(request.POST or None)
     card_id = request.session.session_key
     card, total_price = get_card_info(card_id)
+    if not card.exists():
+        return redirect('shop:about')
     if form.is_valid():
         shop_request = form.save(commit=False)
         shop_request.card_id = card_id
