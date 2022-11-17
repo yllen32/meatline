@@ -1,7 +1,8 @@
 # meetline
 Интернет магазин для мясной лавки
 
-![MMeutWRUqE](https://user-images.githubusercontent.com/104005279/198918057-3b21ba12-58e3-4efe-b21d-d376663c75e9.gif)
+![neomzXUTFh](https://user-images.githubusercontent.com/104005279/201568799-f091e6e5-4672-4ad4-b85f-f1518cc6e0a1.gif)
+
 
 ## Реализованные Особенности
 
