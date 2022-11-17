@@ -2,6 +2,7 @@ version: '3.8'
 services:
   db:
     image: postgres:15.0-alpine
+    restart: always
     volumes:
       - /var/lib/postgresql/data/
     env_file:
@@ -17,6 +18,7 @@ services:
     env_file:
       - ./.env
   nginx:
+    restart: always
     image: nginx:1.23.2-alpine
     ports:
       - "80:80"
