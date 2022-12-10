@@ -1,4 +1,4 @@
-# meetline
+# meatline
 Интернет магазин для мясной лавки
 
 ![neomzXUTFh](https://user-images.githubusercontent.com/104005279/201568799-f091e6e5-4672-4ad4-b85f-f1518cc6e0a1.gif)
